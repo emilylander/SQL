@@ -1,0 +1,13 @@
+CREATE TABLE store(id INTEGER, name TEXT, amount INTEGER, price INTEGER, inventory INTEGER);
+
+INSERT INTO store VALUES(1,"table", 3, 50, 6);
+INSERT INTO store VALUES(2, "chair", 3, 50, 6);
+INSERT INTO store VALUES(3, "couch", 4, 60, 30);
+INSERT INTO store VALUES(4, "pots", 3, 10, 30);
+INSERT INTO store VALUES(5, "pans", 3, 10, 30);
+
+SELECT SUM(amount) FROM store;
+
+SELECT * FROM store ORDER BY price;
+
+SELECT MIN(inventory) FROM store;
