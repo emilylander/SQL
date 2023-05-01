@@ -1,0 +1,38 @@
+-- create a grocery store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, inventory INTEGER);
+
+INSERT INTO store VALUES (1, "strawberry", "produce", 5.99, 50);
+INSERT INTO store VALUES (2, "banana", "produce", 2.99, 60);
+INSERT INTO store VALUES (3, "ground beef", "meat", 6.99, 30);
+INSERT INTO store VALUES (4, "peas", "frozen", .99, 50);
+INSERT INTO store VALUES (5, "corn", "frozen", .75, 35);
+INSERT INTO store VALUES (6, "tortilla chips", "snacks", 3.50, 30);
+INSERT INTO store VALUES (7, "pretzels", "snacks", 3.20, 20);
+INSERT INTO store VALUES (8, "popcorn", "snacks", 1.99, 15);
+INSERT INTO store VALUES (9, "milk", "dairy", 4.50, 35);
+INSERT INTO store VALUES (10, "cheddar cheese", "dairy", 2.99, 60);
+INSERT INTO store VALUES (11, "brie", "dairy", 7.50, 20);
+INSERT INTO store VALUES (12, "crackers", "snacks", 5.10, 10);
+INSERT INTO store VALUES (13, "yogurt", "dairy", 6.99, 25);
+INSERT INTO store VALUES (14, "apples", "produce", .99, 60);
+INSERT INTO store VALUES (15, "kale", "produce", 8.99, 15);
+
+-- display the database ordered by price
+SELECT * FROM store
+ORDER BY price desc;
+
+-- what is the average price of items in the produce section?
+SELECT AVG(price) "avg produce item price"
+FROM store
+where section = 'produce';
+
+-- what items have the lowest inventory amount?
+SELECT item, price, inventory
+FROM store
+ORDER BY inventory asc
+limit 3;
+
+-- what is the total inventory of the store?
+SELECT SUM(inventory) 
+FROM store;
