@@ -62,3 +62,10 @@ JOIN movies
 ON actors.id = movies.actor_id
 WHERE movies.movie1 = "the last song"
 OR movies.movie2 = "the last song";
+
+--display actors name (alphabetically), age, and first movie
+SELECT actors.fullname, actors.age, movies.movie1
+FROM actors
+LEFT OUTER JOIN movies
+ON actors.id = movies.actor_id
+ORDER BY actors.fullname keyword;
