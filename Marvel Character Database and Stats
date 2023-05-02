@@ -48,25 +48,56 @@ INSERT INTO marvels VALUES(25, "Juggernaut", 76, "Neutral", "Male", 2.87, 862, "
 INSERT INTO marvels VALUES(26, "Professor X", 58, "Good", "Male", 1.83, 86, "EUA", 5, 2, 2, 2, 5, 3);
 
 --display table with all information
-SELECT * FROM marvels;
+SELECT * 
+FROM marvels;
 
 --find marvel character with the greatest strength
-SELECT *, MAX(strength) FROM marvels;
+SELECT *, 
+MAX(strength) 
+FROM marvels;
 
 --display marvel character with strength greater than 3, from the USA, and order by greatest popularity
-SELECT * FROM marvels WHERE strength > 3 AND hometown = "USA" ORDER BY popularity desc;
+SELECT * 
+FROM marvels 
+WHERE strength > 3 
+AND hometown = "USA" 
+ORDER BY popularity desc;
 
 --display amount of marvel characters in each gender
-SELECT gender, COUNT(*) FROM marvels GROUP BY gender;
+SELECT gender, 
+COUNT(*) 
+FROM marvels 
+GROUP BY gender;
 
 --organize characters by the strength ability
-SELECT name, CASE WHEN strength > 3 THEN "strong" ELSE "weak" END "ability" FROM marvels ORDER BY ability;
+SELECT name, 
+CASE WHEN strength > 3 
+THEN "strong" 
+ELSE "weak" 
+END "ability" 
+FROM marvels 
+ORDER BY ability;
 
 --display characters by popularity
-SELECT name, CASE WHEN popularity > 50 THEN "popular" ELSE "unpopular" END "popularity" FROM marvels ORDER BY popularity;
+SELECT name, 
+CASE WHEN popularity > 50 
+THEN "popular" 
+ELSE "unpopular" 
+END "popularity" 
+FROM marvels 
+ORDER BY popularity;
 
 --display the average height of the characters based on their alignment
-SELECT alignment, AVG(height_m) AS average_height FROM marvels GROUP BY alignment;
+SELECT alignment, 
+AVG(height_m) 
+AS average_height 
+FROM marvels 
+GROUP BY alignment;
 
 --display the average height of the characters based on their alignment whose average height is greater than 1.9
-SELECT alignment, AVG(height_m) AS average_height FROM marvels GROUP BY alignment HAVING average_height >1.9;
+SELECT alignment, 
+AVG(height_m) 
+AS average_height 
+FROM marvels 
+GROUP BY alignment 
+HAVING average_height >1.9;
