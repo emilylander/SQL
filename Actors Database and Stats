@@ -1,0 +1,50 @@
+--create table on actors
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    spouse TEXT,
+    spouse_id INTEGER);
+    
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ("penelope cruz", 49,"javier bardem", 2); 
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ("javier bardem", 54, "penelope cruz", 1); 
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "jennifer lopez", 53, "ben affleck", 4);
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "ben affleck", 50, "jennifer lopez", 3);
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "blake lively", 35, "ryan reynolds", 6);
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "ryan reynolds", 46, "blake lively", 5);  
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ("scarlett johansson", 38, "colin jost", 8);  
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "colin jost", 40, "scarlett johansson", 7); 
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "miley cyrus", 30, "liam hemsworth", 10);
+INSERT INTO actors (fullname, age, spouse, spouse_id) VALUES ( "liam hemsworth", 33, "miley cyrus", 9);
+
+--display table
+SELECT *
+FROM actors;
+
+--create table on movies the actors have starred in
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    movie1 TEXT,
+    movie2 TEXT);
+    
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (1, "bandidas", "pirates of the caribbean");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (2, "dune", "eat, pray, love");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (3, "selena", "hustlers");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (4, "good will hunting", "gone girl");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (5, "a simple favor", "the shallows");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (6, "the proposal", "deadpool");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (7, "avengers", "he's just not that into you");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (8, "how to be single", "staten island summer");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (9, "the last song", "hannah montana the movie");
+INSERT INTO movies (actor_id, movie1, movie2) VALUES (10, "the hunger games", "the last song");
+
+--display table
+SELECT *
+FROM movies;
+
+--display full names of actors and their spouses (join table with itself)
+SELECT actors.fullname, marriage.fullname
+FROM actors
+JOIN actors marriage
+ON actors.id = marriage.spouse_id;
