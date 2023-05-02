@@ -19,7 +19,8 @@ INSERT INTO store VALUES (14, "apples", "produce", .99, 60);
 INSERT INTO store VALUES (15, "kale", "produce", 8.99, 15);
 
 -- display the database ordered by price
-SELECT * FROM store
+SELECT * 
+FROM store
 ORDER BY price desc;
 
 -- what is the average price of items in the produce section?
