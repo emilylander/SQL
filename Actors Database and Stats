@@ -48,3 +48,17 @@ SELECT actors.fullname, marriage.fullname
 FROM actors
 JOIN actors marriage
 ON actors.id = marriage.spouse_id;
+
+--display actors and their movies
+SELECT actors.fullname, movies.movie1, movies.movie2
+FROM actors
+JOIN movies
+ON actors.id = movies.actor_id;
+
+--display actors in The Last Song
+SELECT actors.fullname
+FROM actors
+JOIN movies
+ON actors.id = movies.actor_id
+WHERE movies.movie1 = "the last song"
+OR movies.movie2 = "the last song";
