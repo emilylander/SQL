@@ -68,4 +68,4 @@ SELECT actors.fullname, actors.age, movies.movie1
 FROM actors
 LEFT OUTER JOIN movies
 ON actors.id = movies.actor_id
-ORDER BY actors.fullname keyword;
+ORDER BY actors.fullname asc;
