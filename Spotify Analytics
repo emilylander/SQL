@@ -1,0 +1,73 @@
+/*In this SQL project, I used data downloaded from an excel file on Kaggle
+https://www.kaggle.com/datasets/equinxx/spotify-top-50-songs-in-2021?select=spotify_top50_2021.csv*/
+
+CREATE TABLE Spotifydata (
+    id               INTEGER        PRIMARY KEY,
+    artist_name      VARCHAR        NOT NULL,
+    track_name       VARCHAR        NOT NULL,
+    track_id         VARCHAR        NOT NULL,
+    popularity       INTEGER        NOT NULL,
+    danceability     DECIMAL (4, 3) NOT NULL,
+    energy           DECIMAL (4, 3) NOT NULL,
+    song_key         INTEGER        NOT NULL,
+    loudness         DECIMAL (5, 3) NOT NULL,
+    song_mode        INTEGER        NOT NULL,
+    speechiness      DECIMAL (5, 4) NOT NULL,
+    acousticness     DECIMAL (6, 5) NOT NULL,
+    instrumentalness DECIMAL (8, 7) NOT NULL,
+    liveness         DECIMAL (5, 4) NOT NULL,
+    valence          DECIMAL (4, 3) NOT NULL,
+    tempo            DECIMAL (6, 3) NOT NULL,
+    duration_ms      INTEGER        NOT NULL,
+    time_signature   INTEGER        NOT NULL
+);
+
+SELECT * FROM Spotifydata;
+
+SELECT * FROM BIT_DB.Spotifydata;
+
+/*bottom 10 artists*/
+SELECT artist_name, AVG(popularity)
+FROM Spotifydata
+GROUP BY artist_name
+ORDER BY AVG(popularity) asc
+LIMIT 10;
+
+/*top 10 most popular songs*/
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10;
+
+/*determine the average popularity, danceability, and energy by artist and track*/
+SELECT
+artist_name
+,track_name
+,AVG(popularity)
+,AVG(danceability)
+,AVG(energy)
+FROM spotifydata
+GROUP BY artist_name, track_name
+ORDER BY artist_name asc;
+
+/*what artist released the longest song?*/
+SELECT artist_name, track_name, duration_ms
+FROM spotifydata
+ORDER BY duration_ms desc
+LIMIT 1;
+
+/*Calculate the average popularity for the artists in the Spotify data table. 
+Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”*/
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s 
+GROUP BY s.artist_name
+)
+ 
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS label
+FROM popularity_average_CTE
+WHERE average_popularity>=90
+ORDER BY average_popularity desc;
