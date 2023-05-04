@@ -90,3 +90,24 @@ rating,
 'safe lane' as 'label'
 FROM safety_avg_cte
 WHERE rating >=4;
+
+/*list the safety rating for each street and the average safety rating for that street using Windows Function*/
+SELECT street, safetyrating,
+AVG(safetyrating) OVER (PARTITION BY street) as "Average_safety_rating"
+FROM CityBikeLanes;
+
+/*list the safety rating for 2nd street and the average safety rating for that street*/
+SELECT street, safetyrating,
+AVG(safetyrating) OVER (PARTITION BY street) as "Average_safety_rating"
+FROM CityBikeLanes
+WHERE street='2nd';
+
+/*list all of the bike lanes, both safety ratings for each lane, the average safety rating for each lane
+label with the recommendation as "Remove", "Leave As-Is", or "Improvements Needed"*/
+SELECT street, safetyrating,
+AVG(safetyrating) OVER (PARTITION BY street) as "Average_safety_rating",
+CASE WHEN AVG(safetyrating) OVER (PARTITION BY street) >=4 THEN "Leave As-Is"
+    WHEN AVG(safetyrating) OVER (PARTITION BY street) <2.5 THEN "Remove"
+    ELSE "Improvements Needed"
+    END AS "Recommendation"
+FROM CityBikeLanes
