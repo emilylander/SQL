@@ -1,0 +1,37 @@
+/*explore data*/
+SELECT * FROM chinook.albums;
+SELECT * FROM chinook.artists;
+SELECT * FROM chinook.customers;
+SELECT * FROM chinook.employees;
+SELECT * FROM chinook.genres;
+SELECT * FROM chinook.invoice_items;
+SELECT * FROM chinook.invoices;
+SELECT * FROM chinook.media_types;
+SELECT * FROM chinook.playlist_track;
+SELECT * FROM chinook.playlists;
+SELECT * FROM chinook.tracks;
+
+/*display the fullname of customers in Germany*/
+SELECT distinct firstname, lastname, country
+FROM chinook.customers
+WHERE country = 'Germany';
+
+/*display the amount of customers in Brazil*/
+SELECT COUNT(*)
+FROM chinook.customers
+WHERE country = 'Brazil'
+GROUP BY country;
+
+/*display the IT Staff*/
+SELECT *
+FROM chinook.employees
+WHERE title = 'IT Staff';
+
+/*how many invoices were there in 2012?*/
+SELECT COUNT(invoiceid)
+FROM chinook.invoices
+WHERE invoicedate like '%2012%';
+
+SELECT COUNT(invoiceid)
+FROM chinook.invoices
+WHERE invoicedate  BETWEEN '2012-01-01' AND '2012-12-31';
