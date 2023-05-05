@@ -48,3 +48,14 @@ ON chinook.t.trackid = chinook.pt.trackid
 JOIN chinook.playlists p
 ON chinook.pt.playlistid = chinook.p.playlistid
 ORDER BY chinook.p.name asc;
+
+/*show total sales for each agent*/
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
+FROM chinook.Employees emp
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName;
