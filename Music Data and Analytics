@@ -47,6 +47,16 @@ FROM chinook.Invoice_items i
 JOIN chinook.Tracks t 
 ON i.TrackId = t.TrackId;
 
+/*display purchased track, artist, and invoice id*/
+SELECT ar.name as Artist, t.Name as Track, i.InvoiceLineId as 'Invoice ID'
+FROM chinook.Invoice_items i
+LEFT JOIN chinook.tracks t 
+ON i.TrackID=t.TrackID
+INNER JOIN chinook.albums a
+ON a.AlbumID=t.AlbumID
+LEFT JOIN chinook.artists ar
+ON ar.ArtistID=a.ArtistID;
+
 /*Find a unique list of billing countries from the Invoice table*/
 SELECT distinct billingcountry as 'Billing Country'
 FROM chinook.invoices;
