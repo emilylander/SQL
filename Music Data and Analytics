@@ -35,3 +35,16 @@ WHERE invoicedate like '%2012%';
 SELECT COUNT(invoiceid)
 FROM chinook.invoices
 WHERE invoicedate  BETWEEN '2012-01-01' AND '2012-12-31';
+
+/*Find a unique list of billing countries from the Invoice table*/
+SELECT distinct billingcountry as 'Billing Country'
+FROM chinook.invoices;
+
+/*show the playlist name for each track*/
+SELECT chinook.p.name, chinook.t.name
+FROM chinook.tracks t
+JOIN chinook.playlist_track pt
+ON chinook.t.trackid = chinook.pt.trackid
+JOIN chinook.playlists p
+ON chinook.pt.playlistid = chinook.p.playlistid
+ORDER BY chinook.p.name asc;
