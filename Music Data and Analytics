@@ -41,6 +41,12 @@ SELECT COUNT(invoiceid)
 FROM chinook.invoices
 WHERE invoicedate  BETWEEN '2012-01-01' AND '2012-12-31';
 
+/*display purchased track name with each invoice id*/
+SELECT t.Name, i.InvoiceLineId
+FROM chinook.Invoice_items i
+JOIN chinook.Tracks t 
+ON i.TrackId = t.TrackId;
+
 /*Find a unique list of billing countries from the Invoice table*/
 SELECT distinct billingcountry as 'Billing Country'
 FROM chinook.invoices;
