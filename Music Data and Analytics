@@ -59,3 +59,13 @@ JOIN chinook.Invoices Inv
 ON Inv.CustomerId = cust.CustomerId
 WHERE emp.Title = 'Sales Support Agent' 
 GROUP BY emp.FirstName;
+
+/*display all track names, genres, and album titles*/
+SELECT t.name as 'Track Name', g.name as 'Genre', a.title as 'Album'
+FROM chinook.tracks t
+JOIN chinook.genres g
+ON t.genreid = g.genreid
+JOIN chinook.albums a
+ON a.albumid = t.albumid
+GROUP BY a.title
+ORDER BY a.title desc;
