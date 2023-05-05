@@ -22,6 +22,11 @@ FROM chinook.customers
 WHERE country = 'Brazil'
 GROUP BY country;
 
+/*show customers who are not in Brazil*/
+SELECT FirstName, LastName, CustomerId, Country 
+FROM chinook.customers 
+WHERE Country != "Brazil";
+
 /*display the IT Staff*/
 SELECT *
 FROM chinook.employees
